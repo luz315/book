@@ -1,0 +1,101 @@
+isbn,title,subtitle,author,publisher,publication_date
+9780132350884,Clean Code,A Handbook of Agile Software Craftsmanship,Robert C. Martin,Prentice Hall,2008-08-01
+9780321125217,Domain-Driven Design,Tackling Complexity in the Heart of Software,Eric Evans,Addison-Wesley,2003-08-30
+9780131103627,The C Programming Language,2nd Edition,"Brian W. Kernighan, Dennis M. Ritchie",Prentice Hall,1988-03-22
+9780201616224,The Pragmatic Programmer,From Journeyman to Master,"Andrew Hunt, David Thomas",Addison-Wesley,1999-10-30
+9781491950357,Designing Data-Intensive Applications,,Martin Kleppmann,O'Reilly Media,2017-03-16
+9780201633610,Design Patterns,Elements of Reusable Object-Oriented Software,"Erich Gamma, Richard Helm, Ralph Johnson, John Vlissides",Addison-Wesley,1994-10-21
+9780596007126,Head First Design Patterns,,"Eric Freeman, Bert Bates, Kathy Sierra, Elisabeth Robson",O'Reilly Media,2004-10-25
+9780134685991,Effective Java,3rd Edition,Joshua Bloch,Addison-Wesley,2018-01-06
+9781617294945,Spring in Action,5th Edition,Craig Walls,Manning,2018-10-05
+9780596009205,Head First Java,2nd Edition,"Kathy Sierra, Bert Bates",O'Reilly Media,2005-02-09
+9780596009206,Learning Python,Powerful Object-Oriented Programming,Mark Lutz,O'Reilly Media,2013-06-12
+9781492078005,Kubernetes: Up and Running,Dive into the Future of Infrastructure,"Kelsey Hightower, Brendan Burns, Joe Beda",O'Reilly Media,2021-01-20
+9781449331818,Learning JavaScript Design Patterns,,Addy Osmani,O'Reilly Media,2012-08-30
+9781449361327,Fluent Python,"Clear, Concise, and Effective Programming",Luciano Ramalho,O'Reilly Media,2015-08-20
+9781492056300,"Hands-On Machine Learning with Scikit-Learn, Keras, and TensorFlow","Concepts, Tools, and Techniques",Aurélien Géron,O'Reilly Media,2019-10-15
+9781617294946,Microservices in Action,,"Morgan Bruce, Paulo A. Pereira",Manning,2018-09-15
+9780262033848,Introduction to Algorithms,3rd Edition,"Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein",MIT Press,2009-07-31
+9780596007127,JavaScript: The Good Parts,,Douglas Crockford,O'Reilly Media,2008-05-15
+9780596009207,Programming PHP,,"Rasmus Lerdorf, Kevin Tatroe, Peter MacIntyre",O'Reilly Media,2002-03-22
+9780596007128,Programming Perl,Unmatched power for text processing and scripting,"Larry Wall, Tom Christiansen, Jon Orwant",O'Reilly Media,2000-07-01
+9781449335588,Learning SQL,,Alan Beaulieu,O'Reilly Media,2009-04-01
+9780134494166,Refactoring,Improving the Design of Existing Code,Martin Fowler,Addison-Wesley,2018-11-20
+9780131101633,Structure and Interpretation of Computer Programs,2nd Edition,"Harold Abelson, Gerald Jay Sussman, Julie Sussman",MIT Press,1996-07-25
+9781492077213,Cloud Native DevOps with Kubernetes,,"Justin Garrison, Kris Nova",O'Reilly Media,2021-01-20
+9780132354790,Agile Software Development,"Principles, Patterns, and Practices",Robert C. Martin,Prentice Hall,2002-10-25
+9780201485677,Refactoring to Patterns,,Joshua Kerievsky,Addison-Wesley,2004-08-30
+9780321356680,Agile Estimating and Planning,,Mike Cohn,Prentice Hall,2005-11-15
+9780596517748,JavaScript Patterns,,Stoyan Stefanov,O'Reilly Media,2010-09-09
+9780596005672,Head First HTML and CSS,,"Elisabeth Robson, Eric Freeman",O'Reilly Media,2012-08-16
+9780596007129,Head First Python,,Paul Barry,O'Reilly Media,2010-11-22
+9780000000000,Sample Book 1,Subtitle 1,Author 1,Sample Publisher,2010-01-15
+9780000000001,Sample Book 2,,Author 2,Sample Publisher,2011-02-15
+9780000000002,Sample Book 3,,Author 3,Sample Publisher,2012-03-15
+9780000000003,Sample Book 4,Subtitle 4,Author 4,Sample Publisher,2013-04-15
+9780000000004,Sample Book 5,,Author 5,Sample Publisher,2014-05-15
+9780000000005,Sample Book 6,,Author 6,Sample Publisher,2015-06-15
+9780000000006,Sample Book 7,Subtitle 7,Author 7,Sample Publisher,2016-07-15
+9780000000007,Sample Book 8,,Author 8,Sample Publisher,2017-08-15
+9780000000008,Sample Book 9,,Author 9,Sample Publisher,2018-09-15
+9780000000009,Sample Book 10,Subtitle 10,Author 10,Sample Publisher,2019-01-15
+9780000000010,Sample Book 11,,Author 11,Sample Publisher,2020-02-15
+9780000000011,Sample Book 12,,Author 12,Sample Publisher,2021-03-15
+9780000000012,Sample Book 13,Subtitle 13,Author 13,Sample Publisher,2022-04-15
+9780000000013,Sample Book 14,,Author 14,Sample Publisher,2023-05-15
+9780000000014,Sample Book 15,,Author 15,Sample Publisher,2010-06-15
+9780000000015,Sample Book 16,Subtitle 16,Author 16,Sample Publisher,2011-07-15
+9780000000016,Sample Book 17,,Author 17,Sample Publisher,2012-08-15
+9780000000017,Sample Book 18,,Author 18,Sample Publisher,2013-09-15
+9780000000018,Sample Book 19,Subtitle 19,Author 19,Sample Publisher,2014-01-15
+9780000000019,Sample Book 20,,Author 20,Sample Publisher,2015-02-15
+9780000000020,Sample Book 21,,Author 21,Sample Publisher,2016-03-15
+9780000000021,Sample Book 22,Subtitle 22,Author 22,Sample Publisher,2017-04-15
+9780000000022,Sample Book 23,,Author 23,Sample Publisher,2018-05-15
+9780000000023,Sample Book 24,,Author 24,Sample Publisher,2019-06-15
+9780000000024,Sample Book 25,Subtitle 25,Author 25,Sample Publisher,2020-07-15
+9780000000025,Sample Book 26,,Author 26,Sample Publisher,2021-08-15
+9780000000026,Sample Book 27,,Author 27,Sample Publisher,2022-09-15
+9780000000027,Sample Book 28,Subtitle 28,Author 28,Sample Publisher,2023-01-15
+9780000000028,Sample Book 29,,Author 29,Sample Publisher,2010-02-15
+9780000000029,Sample Book 30,,Author 30,Sample Publisher,2011-03-15
+9780000000030,Sample Book 31,Subtitle 31,Author 31,Sample Publisher,2012-04-15
+9780000000031,Sample Book 32,,Author 32,Sample Publisher,2013-05-15
+9780000000032,Sample Book 33,,Author 33,Sample Publisher,2014-06-15
+9780000000033,Sample Book 34,Subtitle 34,Author 34,Sample Publisher,2015-07-15
+9780000000034,Sample Book 35,,Author 35,Sample Publisher,2016-08-15
+9780000000035,Sample Book 36,,Author 36,Sample Publisher,2017-09-15
+9780000000036,Sample Book 37,Subtitle 37,Author 37,Sample Publisher,2018-01-15
+9780000000037,Sample Book 38,,Author 38,Sample Publisher,2019-02-15
+9780000000038,Sample Book 39,,Author 39,Sample Publisher,2020-03-15
+9780000000039,Sample Book 40,Subtitle 40,Author 40,Sample Publisher,2021-04-15
+9780000000040,Sample Book 41,,Author 41,Sample Publisher,2022-05-15
+9780000000041,Sample Book 42,,Author 42,Sample Publisher,2023-06-15
+9780000000042,Sample Book 43,Subtitle 43,Author 43,Sample Publisher,2010-07-15
+9780000000043,Sample Book 44,,Author 44,Sample Publisher,2011-08-15
+9780000000044,Sample Book 45,,Author 45,Sample Publisher,2012-09-15
+9780000000045,Sample Book 46,Subtitle 46,Author 46,Sample Publisher,2013-01-15
+9780000000046,Sample Book 47,,Author 47,Sample Publisher,2014-02-15
+9780000000047,Sample Book 48,,Author 48,Sample Publisher,2015-03-15
+9780000000048,Sample Book 49,Subtitle 49,Author 49,Sample Publisher,2016-04-15
+9780000000049,Sample Book 50,,Author 50,Sample Publisher,2017-05-15
+9780000000050,Sample Book 51,,Author 51,Sample Publisher,2018-06-15
+9780000000051,Sample Book 52,Subtitle 52,Author 52,Sample Publisher,2019-07-15
+9780000000052,Sample Book 53,,Author 53,Sample Publisher,2020-08-15
+9780000000053,Sample Book 54,,Author 54,Sample Publisher,2021-09-15
+9780000000054,Sample Book 55,Subtitle 55,Author 55,Sample Publisher,2022-01-15
+9780000000055,Sample Book 56,,Author 56,Sample Publisher,2023-02-15
+9780000000056,Sample Book 57,,Author 57,Sample Publisher,2010-03-15
+9780000000057,Sample Book 58,Subtitle 58,Author 58,Sample Publisher,2011-04-15
+9780000000058,Sample Book 59,,Author 59,Sample Publisher,2012-05-15
+9780000000059,Sample Book 60,,Author 60,Sample Publisher,2013-06-15
+9780000000060,Sample Book 61,Subtitle 61,Author 61,Sample Publisher,2014-07-15
+9780000000061,Sample Book 62,,Author 62,Sample Publisher,2015-08-15
+9780000000062,Sample Book 63,,Author 63,Sample Publisher,2016-09-15
+9780000000063,Sample Book 64,Subtitle 64,Author 64,Sample Publisher,2017-01-15
+9780000000064,Sample Book 65,,Author 65,Sample Publisher,2018-02-15
+9780000000065,Sample Book 66,,Author 66,Sample Publisher,2019-03-15
+9780000000066,Sample Book 67,Subtitle 67,Author 67,Sample Publisher,2020-04-15
+9780000000067,Sample Book 68,,Author 68,Sample Publisher,2021-05-15
+9780000000068,Sample Book 69,,Author 69,Sample Publisher,2022-06-15
+9780000000069,Sample Book 70,Subtitle 70,Author 70,Sample Publisher,2023-07-15

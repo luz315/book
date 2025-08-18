@@ -1,0 +1,37 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: book
+
+  datasource:
+    url: jdbc:postgresql://postgres-db:${POSTGRES_PORT:5432}/${POSTGRES_DB:bookdb}
+    username: ${POSTGRES_USER:bookuser}
+    password: ${POSTGRES_PASSWORD:bookpass}
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+    show-sql: true
+
+  data:
+    redis:
+      host: ${REDIS_HOST:redis}
+      port: ${REDIS_PORT:6379}
+      password: ${REDIS_PASSWORD:systempass}
+
+springdoc:
+  api-docs:
+    path: /v3/api-docs
+    enabled: true
+
+  swagger-ui:
+    path: /doc
+    enabled: true
+    operations-sorter: method
+    tags-sorter: alpha
