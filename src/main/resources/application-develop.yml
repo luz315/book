@@ -1,0 +1,29 @@
+#server:
+#  port: 8080
+#
+#spring:
+#  application:
+#    name: book
+#  datasource:
+#    url: jdbc:postgresql://postgres:POSTGRES_PORT/POSTGRES_DATABASE
+#    username: ${POSTGRES_USER}
+#    password: ${POSTGRES_PASSWORD}
+#    driver-class-name: org.postgresql.Driver
+#  jpa:
+#    hibernate:
+#      ddl-auto: update
+#    properties:
+#      hibernate:
+#        dialect: org.hibernate.dialect.PostgreSQLDialect
+#    show-sql: true
+#
+#springdoc:
+#  api-docs:
+#    path: /v3/api-docs
+#    enabled: true
+#
+#  swagger-ui:
+#    path: /doc
+#    enabled: true
+#    operations-sorter: method
+#    tags-sorter: alpha
