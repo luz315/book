@@ -2,6 +2,7 @@ plugins {
     id 'java'
     id 'org.springframework.boot' version '3.5.4'
     id 'io.spring.dependency-management' version '1.1.7'
+    id 'jacoco'
 }
 
 group = 'com'
@@ -12,6 +13,11 @@ java {
     toolchain {
         languageVersion = JavaLanguageVersion.of(21)
     }
+}
+
+jacoco {
+    toolVersion = "0.8.10"
+    reportsDirectory = layout.buildDirectory.dir("jacocoReport")
 }
 
 configurations {
@@ -25,18 +31,87 @@ repositories {
 }
 
 dependencies {
+
+    // csv 파싱
+    implementation 'com.opencsv:opencsv:5.9'
+
+    // Redis
+    implementation 'org.springframework.boot:spring-boot-starter-data-redis'
+
+    // QueryDSL
+    implementation 'com.querydsl:querydsl-jpa:5.1.0:jakarta'
+    annotationProcessor 'com.querydsl:querydsl-apt:5.1.0:jakarta'
+    annotationProcessor 'jakarta.annotation:jakarta.annotation-api'
+    annotationProcessor 'jakarta.persistence:jakarta.persistence-api'
+
+    // swagger
+    implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.8.5'
+
+    testImplementation 'org.testcontainers:junit-jupiter'
+    testImplementation 'org.testcontainers:postgresql'
+
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-    implementation 'org.springframework.boot:spring-boot-starter-security'
     implementation 'org.springframework.boot:spring-boot-starter-validation'
     implementation 'org.springframework.boot:spring-boot-starter-web'
     compileOnly 'org.projectlombok:lombok'
-    runtimeOnly 'com.mysql:mysql-connector-j'
+    runtimeOnly 'org.postgresql:postgresql'
     annotationProcessor 'org.projectlombok:lombok'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
-    testImplementation 'org.springframework.security:spring-security-test'
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 }
 
 tasks.named('test') {
     useJUnitPlatform()
+    systemProperty 'junit.jupiter.execution.parallel.enabled', 'false'
+    systemProperty 'logging.level.org.testcontainers', 'DEBUG'
+    systemProperty 'logging.level.com.github.dockerjava', 'DEBUG'
+    testLogging {
+        events "FAILED", "PASSED", "SKIPPED", "STANDARD_OUT", "STANDARD_ERROR"
+        exceptionFormat "full"
+        showStandardStreams = true
+    }
+    finalizedBy(tasks.jacocoTestReport)
+}
+
+
+def excludedPatterns = [
+        '**/BookApplication.*',
+        '**/dto/**',
+        '**/common/**',
+        '**/exception/**',
+        '**/generated/**',
+        '**/Q*'
+]
+
+tasks.jacocoTestReport {
+    dependsOn test
+    reports {
+        xml.required.set(true)   // CI/CD (SonarQube, Jenkins 등) 용
+        html.required.set(true)  // 사람이 확인하는 용도
+    }
+    classDirectories.setFrom(
+            files(classDirectories.files.collect {
+                fileTree(dir: it, excludes: excludedPatterns)
+            })
+    )
+    finalizedBy(tasks.jacocoTestCoverageVerification)
+}
+
+jacocoTestCoverageVerification {
+    violationRules {
+        rule {
+            element = 'BUNDLE'
+            limit {
+                counter = 'LINE'
+                value = 'COVEREDRATIO'
+                minimum = 0.70 // 라인 커버리지 80% 이상 필수
+            }
+            limit {
+                counter = 'BRANCH'
+                value = 'COVEREDRATIO'
+                minimum = 0.55 // 분기 커버리지 60% 이상 필수
+            }
+        }
+    }
 }
