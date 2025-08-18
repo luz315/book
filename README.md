@@ -107,12 +107,12 @@
 ## 검색 패턴 종류
 
 시드 데이터: /resources/seed/books_seed.csv (OpenCSV) — 최초 기동 시 한 번만 적재 (idempotent)
-| 입력 패턴          | 의미(논리)      | 내부 tsquery 규칙(일반형)                                   | 사용 함수              |         |              |
-| -------------- |-------------| ---------------------------------------------------- | ------------------ | ------- | ------------ |
-| 단어(단일 토큰)      | 해당 단어 포함    | `plainto_tsquery('<term>')`                          | `plainto_tsquery`  |         |              |
-| 공백 AND(두 단어 이상) | 모든 단어 포함(AND) | `plainto_tsquery('<A> <B> ...')` ≈ `<A> & <B> & ...` | `plainto_tsquery`  |         |              |
-| OR (`\|`)            | A 또는 B                                               | \`to\_tsquery('<A> | <B>')\` | `to_tsquery` |
-| NOT (`-`)      | A 이면서 B 제외  | `to_tsquery('<A> & !<B>')`                           | `to_tsquery`       |         |              |
+| 입력 패턴          | 의미(논리)      | 내부 tsquery 규칙(일반형)                                   | 사용 함수              |
+| -------------- |-------------| ---------------------------------------------------- | ------------------ |
+| 단어(단일 토큰)      | 해당 단어 포함    | `plainto_tsquery('<term>')`                          | `plainto_tsquery`  |
+| 공백 AND(두 단어 이상) | 모든 단어 포함(AND) | `plainto_tsquery('<A> <B> ...')` ≈ `<A> & <B> & ...` | `plainto_tsquery`  |
+| OR (`\|`)            | A 또는 B                                               | \`to_tsquery('<A> \| <B>')` | `to_tsquery` |
+| NOT (`-`)      | A 이면서 B 제외  | `to_tsquery('<A> & !<B>')`                           | `to_tsquery`       |
 
 <br>
 
