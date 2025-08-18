@@ -67,7 +67,7 @@ public class BookNativeRepository {
                     .filter(s -> !s.isBlank())
                     .toList();
 
-            if (valid.isEmpty()) {
+            if (valid.isEmpty() || valid.size() > 2) {
                 throw new CustomException(BookErrorCode.INVALID_SEARCH_QUERY);
             }
             return String.join(" | ", valid);
