@@ -120,33 +120,33 @@ class BookServiceImplTest {
         @DisplayName("성공: 존재하는 ID로 조회 시 도서 상세 정보를 반환한다")
         void getBook_Success() {
             // given
-            UUID bookId = UUID.randomUUID();
-            Book testBook = Book.create("5678", "토비의 스프링", null, "이일민", "에이콘", LocalDate.now());
-            given(bookRepository.findById(bookId)).willReturn(Optional.of(testBook));
+            String isbn = "5678";
+            Book testBook = Book.create(isbn, "토비의 스프링", null, "이일민", "에이콘", LocalDate.now());
+            given(bookRepository.findByIsbn(isbn)).willReturn(Optional.of(testBook));
 
             // when
-            BookDetailResponse response = bookServiceImpl.getBook(bookId);
+            BookDetailResponse response = bookServiceImpl.getBook(isbn);
 
             // then
             assertThat(response).isNotNull();
             assertThat(response.title()).isEqualTo("토비의 스프링");
             assertThat(response.author()).isEqualTo("이일민");
-            then(bookRepository).should().findById(bookId);
+            then(bookRepository).should().findByIsbn(isbn);
         }
 
         @Test
-        @DisplayName("실패: 존재하지 않는 ID로 조회 시 CustomException을 던진다")
-        void getBook_Fail_NotFound() {
+        @DisplayName("실패: 존재하지 않는 ISBN으로 조회 시 CustomException을 던진다")
+        void getBookByIsbn_Fail_NotFound() {
             // given
-            UUID nonExistentId = UUID.randomUUID();
-            given(bookRepository.findById(nonExistentId)).willReturn(Optional.empty());
+            String nonExistentIsbn = "9999";
+            given(bookRepository.findByIsbn(nonExistentIsbn)).willReturn(Optional.empty());
 
             // when & then
-            assertThatThrownBy(() -> bookServiceImpl.getBook(nonExistentId))
+            assertThatThrownBy(() -> bookServiceImpl.getBook(nonExistentIsbn))
                     .isInstanceOf(CustomException.class)
                     .hasFieldOrPropertyWithValue("errorCode", BookErrorCode.BOOK_NOT_FOUND);
 
-            then(bookRepository).should().findById(nonExistentId);
+            then(bookRepository).should().findByIsbn(nonExistentIsbn);
         }
     }
 }

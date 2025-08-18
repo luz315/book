@@ -23,6 +23,11 @@ public class JpaBookRepositoryAdapter implements BookRepository {
     }
 
     @Override
+    public Optional<Book> findByIsbn(String isbn) {
+        return jpaBookRepository.findByIsbn(isbn);
+    }
+
+    @Override
     public Book save(Book book) {
         return jpaBookRepository.save(book);
     }

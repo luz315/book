@@ -9,6 +9,7 @@ import java.util.Optional;
 
 public interface BookRepository {
     Optional<Book> findById(UUID id);
+    Optional<Book> findByIsbn(String isbn);
     Book save(Book book);
     long count();
     Pagination<Book> searchBookList(String keyword, int page, int size, SearchStrategy strategy);

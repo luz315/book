@@ -29,9 +29,9 @@ public class BookController {
         return ApiResult.success(bookService.searchBookList(keyword, page, size));
     }
 
-    @GetMapping("/{id}")
-    @Operation(summary = "도서 상세 조회", description = "도서 고유 ID로 상세 정보를 조회합니다.")
-    public ApiResult<BookDetailResponse> getBook(@PathVariable UUID id) {
-        return ApiResult.success(bookService.getBook(id));
+    @GetMapping("/{isbn}")
+    @Operation(summary = "도서 상세 조회", description = "도서 고유 ISBN으로 상세 정보를 조회합니다.")
+    public ApiResult<BookDetailResponse> getBook(@PathVariable String isbn) {
+        return ApiResult.success(bookService.getBook(isbn));
     }
 }

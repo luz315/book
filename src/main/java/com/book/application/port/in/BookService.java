@@ -7,5 +7,5 @@ import java.util.UUID;
 
 public interface BookService {
     BookSearchResponse searchBookList(String keyword, int page, int size);
-    BookDetailResponse getBook(UUID id);
+    BookDetailResponse getBook(String isbn);
 }

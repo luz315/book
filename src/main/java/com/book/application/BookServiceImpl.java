@@ -65,8 +65,8 @@ public class BookServiceImpl implements BookService {
 
     @Override
     @Transactional(readOnly = true)
-    public BookDetailResponse getBook(UUID id) {
-        Book book = bookRepository.findById(id)
+    public BookDetailResponse getBook(String isbn) {
+        Book book = bookRepository.findByIsbn(isbn)
                 .orElseThrow(() -> new CustomException(BookErrorCode.BOOK_NOT_FOUND));
         return BookDetailResponse.from(book);
     }

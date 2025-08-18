@@ -70,21 +70,18 @@ class BookControllerTest extends IntegrationTestSupport {
         mockMvc.perform(get("/api/v1/books").param("keyword", "spring-jpa"))        .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.success").value(true))
-                // "Spring Data JPA"는 'java' 토큰이 들어있을 수 있으므로 제외될 수 있음
-                // 데이터셋에 맞춰 기대값은 1개("Spring Boot")로 검증
                 .andExpect(jsonPath("$.data.books.length()").value(1))
                 .andExpect(jsonPath("$.data.books[0].title").value("Spring Boot"));
     }
 
     @Test
-    @DisplayName("도서 ID로 상세 조회")
-    void getBook() throws Exception {
+    @DisplayName("도서 ISBN으로 상세 조회")
+    void getBookByIsbn() throws Exception {
         // given
-        var saved = bookRepository.save(Book.create("1111", "Spring Boot", "Core", "Kim", "PubA", LocalDate.now()));
-        UUID id = saved.getId();
+        bookRepository.save(Book.create("1111", "Spring Boot", "Core", "Kim", "PubA", LocalDate.now()));
 
         // when & then
-        mockMvc.perform(get("/api/v1/books/{id}", id))
+        mockMvc.perform(get("/api/v1/books/{isbn}", "1111"))
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.success").value(true))
@@ -94,13 +91,11 @@ class BookControllerTest extends IntegrationTestSupport {
     }
 
     @Test
-    @DisplayName("존재하지 않는 도서 ID로 조회 시 404 JSON 에러")
-    void getBook_NotFound() throws Exception {
-        UUID nonExistentId = UUID.randomUUID();
-
-        mockMvc.perform(get("/api/v1/books/{id}", nonExistentId))
+    @DisplayName("존재하지 않는 도서 ISBN 조회 시 404 JSON 에러")
+    void getBookByIsbn_NotFound() throws Exception {
+        mockMvc.perform(get("/api/v1/books/{isbn}", "9999"))
                 .andDo(print())
-                .andExpect(status().isNotFound())                 // GlobalExceptionHandler 필요
+                .andExpect(status().isNotFound())
                 .andExpect(jsonPath("$.success").value(false))
                 .andExpect(jsonPath("$.error.message").value("도서를 찾을 수 없습니다."));
     }
