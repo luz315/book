@@ -1,11 +1,34 @@
+## 프로젝트 설명
+도서 검색 및 조회를 위한 REST API 시스템입니다
+사용자는 ISBN으로 도서를 조회하거나 키워드 기반의 검색 기능을 통해 도서를 탐색할 수 있습니다
+검색 연산자를 지원해 복합 검색이 가능하고 인기 검색어 집계를 통해 트렌드를 확인할 수 있습니다
+
+<br>
+
 ## 실행 방법
 - 터미널에 ./gradlew clean build 입력
 - 터미널에 docker-compose up -d 입력
 - http://localhost:8080/doc 실행
   (빠른 테스트를 위해 모든 코드는 공개 처리)
 - 테스트 커버리지는 build-jacocoReport-test-html-index.html 참고해주세요
+- p.s 테스트 데이터 내용물은 src-main-resources-seed에서 확인 가능합니다
 
-p.s 테스트 데이터 내용물은 src-main-resources-seed에서 확인 가능합니다
+<br>
+
+### 예시 응답
+
+**단순 & 복합 검색 API (예시 키워드)**
+- **Design** → Design Patterns, Domain-Driven Design … (4건)
+- **Head** → Head First Java, Head First Python … (4건)
+- **Head Design** → Head First Design Patterns (1건)
+- **Head|Design** → Head 계열 4권 + Design 계열 3권 = (중복 제거 후) 7건
+- **Head-Design** → Head는 포함하지만 Design은 없는 3권 (Head First Java, Head First HTML and CSS, Head First Python)
+
+**상세 조회 API (예시 isbn)**
+- 9780596007126 
+
+**인기 조회 API**
+- 인자없이 바로 조회가능
 
 <br>
 
@@ -16,6 +39,7 @@ p.s 테스트 데이터 내용물은 src-main-resources-seed에서 확인 가능
 | 도서 상세 조회     | GET | `/api/v1/books/{id}`     | `id` (path, UUID)                                                                    | 단일 도서 상세                                         |
 | 인기 검색어 TOP N | GET | `/api/v1/books/trending` | 없음                                                                                   | Redis ZSET 기반, 월별 상위 키워드                         |
 
+<br>
 
 ## 핵심 구현 포인트 
 
@@ -90,10 +114,51 @@ p.s 테스트 데이터 내용물은 src-main-resources-seed에서 확인 가능
 | OR (`\|`)            | A 또는 B                                               | \`to\_tsquery('<A> | <B>')\` | `to_tsquery` |
 | NOT (`-`)      | A 이면서 B 제외  | `to_tsquery('<A> & !<B>')`                           | `to_tsquery`       |         |              |
 
-### 예시 응답
+<br>
 
-- Design → Design Patterns, Domain-Driven Design … (4건)
-- Head → Head First Java, Head First Python … (4건)
-- Head Design → Head First Design Patterns (1건)
-- Head|Design → Head 계열 4권 + Design 계열 3권 = (중복 제거 후) 7건
-- Head-Design → Head는 포함하지만 Design은 없는 3권 (Head First Java, Head First HTML and CSS, Head First Python)
+## 기술 스택 및 선택 이유
+- Java 21 + Spring Boot 3.x
+- PostgreSQL
+  - Full-Text Search 기능을 활용하여 도서 검색 최적화
+  - LIKE 검색 대비 빠르고 정확한 검색이 가능
+- Redis
+  - 인기 검색어 집계 및 캐싱 처리
+    - ZSet을 활용하여 검색어 순위 관리
+- Swagger
+  - API 문서 자동 생성
+  - /swagger-ui.html에서 테스트 가능
+- Jacoco
+  - 간편하게 테스트 코드 커버리지 확인 가능
+
+<br>
+
+## 아키텍처 결정 사항
+
+- Presentation (Controller)
+- Application (Service, Port in/out)
+- Domain (Entity, Repository interface)
+- Infrastructure (DB, Redis, Query Repository)
+
+- 검색 전략 분리: SearchStrategy Enum을 통해 단순 검색/OR 검색/NOT 검색을 명확히 구분
+- 트렌드 기록 비동기 처리: Redis 기록 실패 시 검색 기능에 영향을 주지 않도록 예외 무시
+
+<br>
+
+## 문제해결 중 고민과정
+
+1. Full-Text Search vs Like 검색
+- LIKE 검색은 성능 한계가 있어 PostgreSQL FTS를 선택
+
+2. 검색 연산자 파싱
+- OR(|) 연산과 NOT(-) 연산을 지원
+- 잘못된 입력(tdd|java|spring → 3개 키워드) 처리 위해 최대 2개 키워드 제한 로직 추가
+
+3. UUID vs ISBN
+
+- 초기에는 UUID로 조회했지만 요구사항에 따라 ISBN 기반 조회로 변경
+- 테스트 및 실사용 환경 모두 ISBN 기반 조회가 직관적
+
+4. 인기 검색어 집계
+
+- Redis ZSet을 사용하여 검색어 점수 관리
+- 예외 발생 시 검색 자체는 정상 동작하도록 설계
